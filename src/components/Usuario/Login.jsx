@@ -1,6 +1,7 @@
+
 import URL_SERVER from "../../constantes"
 
-export default function Login({usuario, setUsuario,setRegistrar, nombre, password, setNombre, setPassword}){
+export default function Login({setUsuario,setRegistrar, nombre, password, setNombre, setPassword}){
 
     function iniciarSesion(){
         fetch(URL_SERVER+`usuarios?nombre_like=${nombre}`)
@@ -10,8 +11,12 @@ export default function Login({usuario, setUsuario,setRegistrar, nombre, passwor
             }
         })
         .then((data)=>{
-            if(password === data.password){
-                setUsuario(nombre)
+            if (data.length > 0 && password === data[0].password) {
+                const usuario = data[0].nombre;
+                localStorage.setItem("usuario", JSON.stringify(data.nombre));
+                setUsuario(usuario);
+            }else{
+                console.log("Contraseña incorrecta")
             }
         })
     }

@@ -32,6 +32,7 @@ export default function Registro({setRegistrar, nombre, password, setNombre, set
 
     return(
         <>
+            <h2>Registro</h2>
             <input placeholder="nombre" type="text" value={nombre} onChange={(e)=>{setNombre(e.target.value)}}></input>
             <input placeholder="contraseña" type="password" value={password} onChange={(e)=>{setPassword(e.target.value)}}></input>
             <button onClick={()=>registrarse(nombre,password)}>Registrarme</button>
